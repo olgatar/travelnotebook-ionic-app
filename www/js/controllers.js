@@ -380,5 +380,6 @@ angular.module('travelnotebook.controllers', [])
 
     $scope.clearForm = function() {
       $scope.entry = {};
+      document.getElementsByTagName('img').src = '';
     }
 }])
