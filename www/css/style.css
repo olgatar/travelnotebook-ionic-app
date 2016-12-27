@@ -1,1 +1,173 @@
-/* Empty. Add your own CSS if you like */
+/* Headings */
+.title {
+  text-align: center;
+  color: #fff !important;
+  font-size: 22px !important;
+}
+
+h3 {
+  text-align: center;
+  font-size: 22px !important;
+  margin-bottom: 10px !important;
+}
+
+.filter {
+  padding-top: 15px;
+  border-radius: 5px;
+}
+
+.filter select {
+  border: none;
+  cursor: pointer;
+  color: #444;
+  padding: 0;
+}
+
+.filter button {
+  font-size: 16px !important;
+}
+
+.filter button {
+  font-size: 16px !important;
+}
+
+.filter button:hover {
+  font-weight: normal !important;
+  background-color: #fff !important;
+  border: 2px solid #444;
+  color: #444 !important;
+}
+
+/* Icon for button general style */
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  font-weight: bold !important;
+}
+
+.tab-title:hover {
+    font-size: 16px;
+    font-weight: bold !important;
+    color: #fff !important;
+}
+
+/* Country select */
+.select {
+  background-color: #fff !important;
+  width: 100%;
+  color: #444 !important;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px !important;
+  border: none;
+}
+
+.select {
+  padding: 5px !important;
+  border: none;
+}
+
+/* Textarea */
+textarea{
+  font-size: 16px;
+  overflow:hidden;
+  width:100%;
+}
+
+.entry-list p {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Image upload and preview */
+#entry-image-div {
+	background-image:url('');
+	background-size:cover;
+	background-position: center;
+	height: 200px; width: 100%;
+	border: 1px solid none;
+	border-radius: 5px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.image-container {
+  cursor: pointer;
+  position: relative;
+  background: white;
+  float: left;
+	width: 100%;
+	color: #4e5050 !important;
+	font-size: 16px !important;
+}
+
+.image-container [type=file] {
+  display: block;
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.entry-main-image img {
+  width:100% !important;
+  border: 1px solid none;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/* Editing input */
+.edit {
+  font-weight: bold;
+  font-size: 18px !important;
+  width: 100%;
+  border: 1px solid grey !important;
+  border-radius: 5px !important;
+}
+
+/* General margins */
+.margin {
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+/* Text wrapping */
+.item-text-wrap {
+    overflow: auto;
+}
+
+/* Icons and actions */
+.icon-actions {
+  color: #444;
+  font-size: 16px;
+  border: none;
+  background: none;
+  font-weight: bold;
+}
+
+.icon-actions:hover {
+    opacity: 0.5;
+}
+
+.ion-trash-b {
+  font-size: 20px;
+  border: none;
+  background: none;
+}
+
+.checkbox {
+    vertical-align: middle;
+}
+
+.actions {
+    float: right;
+}
+
+.ion-checkmark-circled.icon-actions.margin{
+	margin-right: 35px;
+}

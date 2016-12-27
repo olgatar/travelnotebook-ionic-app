@@ -1,0 +1,75 @@
+<!-- All travels list page template with data taken from Firebase database -->
+<ion-nav-bar class="bar-stable bar-dark">
+  <ion-nav-title class="title">TravelNotebook</ion-nav-title>
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" ng-click="newTravel()">New</button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="logout()">Logout</button>
+  </ion-nav-buttons>
+</ion-nav-bar>
+<ion-content class="has-header padding" overflow-scroll="true" on-refresh="onRefresh()">
+  <!-- To filter entries by selected country or show all -->
+  <div class="filter item item-button-right">
+    <select ng-change="filterInit()" class="item item-input" ng-model="selected_country" ng-options="item.country as item.country for item in entriesNoFilter | filterDuplicates: 'country'">
+      <option disabled selected value>-- Filter by country --</option>
+    </select>
+    <button type="button" class="show-all button button-dark" name="button" ng-click="showAll();">Show all</button>
+  </div>
+  <div class="entry-list card" ng-repeat="entry in entries track by $index" >
+
+      <div class="item item-text-wrap">
+        <h3 ng-hide="editing">{{ entry.title }}</h3>
+        <div class="title">
+          <input type="text" class="card edit" ng-show="editing" value={{entry.title}} ng-model="entry.title" required>
+        </div>
+        <span style="font-weight:bold;"><span style="font-size:14px;">{{ entry.created | date:'yyyy-MM-dd' }} - in </span><span ng-hide="editing">{{ entry.country }}</span>
+        <input type="text" class="card edit" ng-show="editing" value={{entry.country}} ng-model="entry.country" required></span>
+        <p ng-hide="editing">{{ entry.main_body }}</p>
+        <textarea ng-show="editing" class='card edit autoExpand' rows='3' data-min-rows='3' value={{entry.main_body}} ng-model="entry.main_body" required></textarea>
+        <!-- IF BROWSER APP Image upload that will be saved as base64 object -->
+        <div ng-show="editing" class="card edit image-upload">
+          <label class="item item-input image-container">
+            Upload image
+            <input ng-show="editing" type="file" ng-model="entry.main_image" name="file" accept="image/*" maxsize="5000" required base-sixty-four-input>
+          </label>
+        </div>
+        <div class="entry-main-image">
+          <img data-ng-src="data:image/jpg;base64,{{entry.main_image.base64}}" data-err-src=""/>
+        </div>
+
+        <!-- If on MOBILE DEVICE then uncomment statements below and comment above -->
+        <!-- For editing image and upload that will be saved as base64 object -->
+      <!--
+        <div class="card edit image-upload" ng-show="editing">
+          <label class="item item-input image-container">
+            Upload image
+            <input ng-show="editing" type="button" ng-click="imagePreview = true; uploadPhoto();" ng-model="entry.main_image">
+          </label>
+        </div>
+        <div class="entry-main-image">
+          <img data-ng-src="{{entry.main_image}}" data-err-src=""/>
+        </div>
+      -->
+         <div class="actions padding">
+           <button class="icon-actions margin" ion-button ng-show="changeBtnVisible" ng-click="editing = true; changeBtnVisible = false">
+             Change
+           </button>
+           <button class="icon-actions margin" ion-button ng-hide="changeBtnVisible" ng-click="changeEntry(entry.key); editing = false; changeBtnVisible = true;">
+             Save
+           </button>
+          <button class="ion-trash-b icon-actions margin" ion-button icon-only icon-right ng-click="deleteEntry(entry.key)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </div>
+      </div>
+   </div>
+   <!-- Card visible if no travel entrie in current user database -->
+   <div class="card" ng-show="noData">
+      <div class="item item-text-wrap">
+         <span>
+         No travels shared yet. Click New to add one.
+         </span>
+      </div>
+   </div>
+</ion-content>

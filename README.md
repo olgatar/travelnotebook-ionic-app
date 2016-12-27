@@ -7,7 +7,23 @@ Install Cordova and Ionic globally:
 
 	npm install -g cordova ionic
 
+Install npm packages:
+
+	npm install
+
+Install gulp-connect:
+
+  npm install gulp-connect --save
+
+Install [angular-base64-upload module](https://github.com/adonespitogo/angular-base64-upload):
+
+  npm install angular-base64-upload
+
 Add target platform:
+
+  ionic platform add [android/ios]
+
+To run app on Android, addtionally install cordova-plugin-camera:
 
   ionic platform add [android/ios]
 

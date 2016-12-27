@@ -1,0 +1,53 @@
+<!-- New Travel page template with input form to add new travel entry -->
+<div class="modal slide-in-up" ng-controller="newTravelCtrl">
+  <ion-nav-bar class="bar-stable bar-dark">
+    <ion-nav-title class="title">New Travel</ion-nav-title>
+    <ion-nav-buttons side="left">
+      <button class="button button-clear" ng-click="close()">Cancel</button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="createNew()">Create</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+   <ion-content class="padding has-header" overflow-scroll="true">
+     <div class="list">
+       <!-- Ionic cards with input fields -->
+        <label class="card item item-input">
+        <span class="input-label">Title</span>
+        <input type="text" id="entry-title" name="entryTitle" ng-model="entry.title" required>
+        </label>
+        <!-- Country select custom element defined in angular directive -->
+        <label class="card item item-input">
+          <country-select selected-country="entry.country" default-value=" -- Select country -- "></country-select></select>
+        </label>
+        <!-- Textarea with auto expand functionality -->
+        <label class="card item item-input">
+          <textarea class='autoExpand' rows='3' data-min-rows='3' placeholder="Tell Your Travel Story" id="entryMainBody" name="entry-main-body" ng-model="entry.main_body" required></textarea>
+        </label>
+        <!-- IF BROWSER APP Image upload that will be saved as base64 object -->
+        <div class="card image-upload">
+          <label class="item item-input image-container">
+            Upload image
+            <input type="file" ng-model="entry.main_image" name="file" accept="image/*" maxsize="5000" required base-sixty-four-input ng-click="imagePreview = true" onchange="getEntryImageURL(event);">
+          </label>
+        </div>
+        <div class="entry-main-image">
+          <img data-ng-src="data:image/jpg;base64,{{entry.main_image.base64}}" data-err-src=""/>
+        </div>
+
+        <!-- If on MOBILE DEVICE then uncomment statements below and comment above -->
+        <!-- Image upload that will be saved as base64 object -->
+    <!--    <div class="card image-upload">
+          <label class="item item-input image-container">
+            Upload image
+            <input type="button" ng-click="imagePreview = true; uploadPhoto();" ng-model="entry.main_image">
+          </label>
+        </div>
+        <div class="entry-main-image">
+          <img id="previewImage" ng-show="imagePreview" data-err-src=""/>
+        </div>
+    -->
+
+     </div>
+   </ion-content>
+</div>

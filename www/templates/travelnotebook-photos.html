@@ -1,0 +1,40 @@
+<!-- All photos page template with data taken from Firebase database -->
+<ion-nav-bar class="bar-stable bar-dark">
+  <ion-nav-title class="title">TravelNotebook</ion-nav-title>
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" ng-click="newTravel()">New</button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="logout()">Logout</button>
+  </ion-nav-buttons>
+</ion-nav-bar>
+<ion-content class="has-header padding" overflow-scroll="true" on-refresh="onRefresh()">
+  <!-- To filter entries by selected country or show all -->
+  <div class="filter item item-button-right">
+    <select ng-change="filterInit()" class="item item-input" ng-model="selected_country" ng-options="item.country as item.country for item in entriesNoFilter | filterDuplicates: 'country'">
+      <option disabled selected value>-- Filter by country --</option>
+    </select>
+    <button type="button" class="show-all button button-dark" name="button" ng-click="showAll();">Show all</button>
+  </div>
+  <div class="entry-list card" ng-repeat="entry in entries track by $index" >
+      <div class="item item-text-wrap">
+        <span style="font-weight:bold;"><span style="font-size:14px;">{{ entry.created | date:'yyyy-MM-dd' }} - in </span><span>{{ entry.country }}</span>
+        <!-- IF BROWSER APP -->
+        <div class="entry-main-image">
+          <img data-ng-src="data:image/jpg;base64,{{entry.main_image.base64}}" data-err-src=""/>
+        </div>
+        <!-- If on MOBILE DEVICE then uncomment statements below and comment above -->
+        <!-- <div class="entry-main-image">
+          <img data-ng-src="{{entry.main_image}}" data-err-src=""/>
+        </div> -->
+      </div>
+   </div>
+   <!-- Card visible if no travel entrie in current user database -->
+   <div class="card" ng-show="noData">
+      <div class="item item-text-wrap">
+         <span>
+         No photos shared yet. Click New to add one.
+         </span>
+      </div>
+   </div>
+</ion-content>

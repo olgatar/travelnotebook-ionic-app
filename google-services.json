@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "917472882920",
+    "firebase_url": "https://travelnotebook-d59d9.firebaseio.com",
+    "project_id": "travelnotebook-d59d9",
+    "storage_bucket": "travelnotebook-d59d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917472882920:android:96cebcb28cb34929",
+        "android_client_info": {
+          "package_name": "com.ionicframework.travelnotebook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917472882920-31l4ohd0n0lb4efab0r79kg7qf6vog2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtRuxanwDdpYE86irsKFPZlg7Hlr6dflg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
