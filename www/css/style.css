@@ -1,3 +1,9 @@
+body, button, .tab-title, select, .select, h1, h3, .input-label,
+textarea, span, country-select, .card, .item, .item-input,
+input[type=text] {
+  font-family: 'Lora', serif !important;
+}
+
 /* Headings */
 .title {
   text-align: center;
@@ -11,8 +17,9 @@ h3 {
   margin-bottom: 10px !important;
 }
 
+/* Selected country filter */
 .filter {
-  padding-top: 15px;
+  padding-top: 15px !important;
   border-radius: 5px;
 }
 
@@ -21,14 +28,18 @@ h3 {
   cursor: pointer;
   color: #444;
   padding: 0;
+  font-weight: 500 !important;
+}
+
+.filter select:hover {
+  opacity: 0.5;
 }
 
 .filter button {
   font-size: 16px !important;
-}
-
-.filter button {
-  font-size: 16px !important;
+  top: 6px !important;
+  bottom: 6px !important;
+  right: 6px !important;
 }
 
 .filter button:hover {
@@ -44,29 +55,35 @@ button {
 }
 
 button:hover {
-  font-weight: bold !important;
+    opacity: 0.5;
 }
 
 .tab-title:hover {
     font-size: 16px;
-    font-weight: bold !important;
     color: #fff !important;
 }
 
 /* Country select */
 .select {
   background-color: #fff !important;
-  width: 100%;
+  width: 100% !important;
   color: #444 !important;
   font-size: 16px;
   cursor: pointer;
   padding: 5px !important;
   border: none;
+  font-family: 'Lora', serif !important;
+}
+.select option {
+  border: none;
 }
 
-.select {
-  padding: 5px !important;
-  border: none;
+.select:hover {
+  opacity: 0.5;
+}
+
+.date-and-country-div {
+  text-align: center;
 }
 
 /* Textarea */
@@ -74,6 +91,7 @@ textarea{
   font-size: 16px;
   overflow:hidden;
   width:100%;
+  padding-top: 10px !important;
 }
 
 .entry-list p {
@@ -83,17 +101,6 @@ textarea{
 }
 
 /* Image upload and preview */
-#entry-image-div {
-	background-image:url('');
-	background-size:cover;
-	background-position: center;
-	height: 200px; width: 100%;
-	border: 1px solid none;
-	border-radius: 5px;
-  margin: 0 auto;
-  cursor: pointer;
-}
-
 .image-container {
   cursor: pointer;
   position: relative;
@@ -102,6 +109,11 @@ textarea{
 	width: 100%;
 	color: #4e5050 !important;
 	font-size: 16px !important;
+  font-family: 'Lora', serif !important;
+}
+
+.image-container:hover {
+  opacity: 0.5;
 }
 
 .image-container [type=file] {
@@ -115,9 +127,8 @@ textarea{
 
 .entry-main-image img {
   width:100% !important;
-  border: 1px solid none;
+  border: 1px solid rgba(68,68,68,0.2);
   border-radius: 5px;
-  margin-top: 10px;
   margin-bottom: 5px;
 }
 
@@ -128,6 +139,10 @@ textarea{
   width: 100%;
   border: 1px solid grey !important;
   border-radius: 5px !important;
+  padding-left: 10px !important;
+}
+.edit label {
+  padding-left: 0px !important;
 }
 
 /* General margins */
@@ -139,6 +154,11 @@ textarea{
 /* Text wrapping */
 .item-text-wrap {
     overflow: auto;
+    padding: 10px !important;
+}
+
+.row, .col {
+  padding: 0px !important;
 }
 
 /* Icons and actions */
@@ -155,19 +175,17 @@ textarea{
 }
 
 .ion-trash-b {
-  font-size: 20px;
+  font-size: 24px;
   border: none;
   background: none;
 }
 
-.checkbox {
-    vertical-align: middle;
+.icon-actions.margin{
+	margin-right: 0px !important;
+  margin-left: 20px !important;
+  padding: 0px !important;
 }
 
-.actions {
-    float: right;
-}
-
-.ion-checkmark-circled.icon-actions.margin{
-	margin-right: 35px;
+.no-data-div {
+  text-align: center;
 }

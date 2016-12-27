@@ -1,3 +1,5 @@
+'use strict';
+
 // Function to get new entry image blob url used for image preview
 function getEntryImageURL(event){
   var entryImagePath = URL.createObjectURL(event.target.files[0]);

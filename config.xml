@@ -2,7 +2,7 @@
 <widget id="com.ionicframework.travelnotebook" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TravelNotebook</name>
     <description>
-        TravelNotebook is an Ionic app for Android with Firebase as the API server.
+        TravelNotebook is an Ionic app with Firebase as the API server.
     </description>
     <author email="leyendaorama@gmail.com" href="https://github.com/olgatar/travelnotebook-ionic-app">
       Olga Tarassova

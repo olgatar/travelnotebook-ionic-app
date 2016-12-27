@@ -21,7 +21,7 @@ angular.module('travelnotebook', ['naif.base64','ionic','firebase','travelnotebo
       StatusBar.styleDefault();
     }
 
-    //Firebase URL and authentication
+    //Firebase authentication control
     $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
       // Catch an error thrown when the $requireSignIn promise is rejected
       // and redirect the user back to the home page

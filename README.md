@@ -1,51 +1,62 @@
-# TraveNotebook
+# TravelNotebook
 TravelNotebook is a mobile app build with [Cordova](https://cordova.apache.org) and [Ionic Framework](https://ionicframework.com/docs/) and [Firebase](https://firebase.google.com/) as an API server.
 
 ## How to build & run
 
-Install Cordova and Ionic globally:
+1. Install Cordova and Ionic globally:
 
 	npm install -g cordova ionic
 
-Install npm packages:
+2. Install npm packages:
 
 	npm install
 
-Install gulp-connect:
+3. Install gulp-connect for app development (optional):
 
   npm install gulp-connect --save
 
-Install [angular-base64-upload module](https://github.com/adonespitogo/angular-base64-upload):
+4. Install [angular-base64-upload module](https://github.com/adonespitogo/angular-base64-upload):
+		(for app to function as web browser application)
 
   npm install angular-base64-upload
 
-Add target platform:
+5. Add target platform (for app to function as a mobile device application):
 
   ionic platform add [android/ios]
 
-To run app on Android, addtionally install cordova-plugin-camera:
+6. To run app on Android, addtionally install cordova-plugin-camera:
 
   ionic platform add [android/ios]
 
-Just build:
+To run with gulp:
+
+  1. gulp serve
+	2. open http://localhost:3000/ in browser
+
+To just build:
 
 	ionic platform build [android/ios]
 
-Run in browser:
+To run in browser:
 
   ionic serve
 
-Run in emulator:
+To run in mobile emulator:
 
-	ionic emulate [ios/android/browser]
+	ionic emulate [ios/android]
 
-Run on device:
+To run on mobile device:
 
-	ionic run [ios/android/browser]
+	ionic run [ios/android]
 
-Release build signed .apk(Android) or .ipa(IOS):
+To release build signed .apk(Android) or .ipa(IOS):
 
   cordova build [android/ios] --device --release --buildConfig=build-release.json
+
+To publish app on Google Play Store or Apple Store:
+
+  1. Prepare app meta data and image assests
+	2. Publish
 
 ## Important folders and files
 

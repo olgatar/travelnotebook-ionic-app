@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('travelnotebook.controllers', [])
 // Controller for SignIn
     .controller('SignInCtrl', [
@@ -127,8 +129,10 @@ angular.module('travelnotebook.controllers', [])
               //console.log($scope.entries);
               $scope.entriesNoFilter = $scope.entries;
               if ($scope.entries == null) {
+                  $scope.filterVisible = false;
                   $scope.noData = true;
               } else {
+                  $scope.filterVisible = true;
                   $scope.noData = false;
               }
           });
@@ -204,6 +208,91 @@ angular.module('travelnotebook.controllers', [])
         });
     };
 }])
+
+// Controller to publish all photos made by the current user
+.controller('myPhotosCtrl', [
+  'Auth','currentAuth','$scope', '$rootScope', '$state', '$window', '$ionicModal', '$firebase','$timeout',
+  function(Auth, currentAuth, $scope, $rootScope, $state, $window, $ionicModal, $firebase,$timeout) {
+    $rootScope.show("Please wait...");
+    $scope.changeBtnVisible = true;
+    var country = this.selected_country;
+    var userId = firebase.auth().currentUser.uid;
+    var userEmail = firebase.auth().currentUser.email;
+    var EntriesRef = firebase.database().ref().child('users/' + userId);
+    $scope.entries = [];
+    $scope.entriesNoFilter = [];
+
+    if (!country) {
+      var country = null;
+    }
+
+    $scope.showAll = function() {
+      showAll();
+    }
+
+    showAll();
+
+    function showAll() {
+      // function to publish all entries
+
+      EntriesRef.on('value', function(snapshot) {
+        var data = snapshot.val();
+        //$scope.entries = data;
+        $timeout(function () {
+          $scope.$apply(function() {
+              $scope.entries = data;
+              $scope.entriesNoFilter = $scope.entries;
+              if ($scope.entries == null) {
+                  $scope.filterVisible = false;
+                  $scope.noData = true;
+              } else {
+                  $scope.filterVisible = true;
+                  $scope.noData = false;
+              }
+          });
+          checkEntries();
+        })
+      });
+    };
+
+
+    // function for the filter initiation
+    $scope.filterInit = function() {
+      var country = this.selected_country;
+      var EntriesRef = firebase.database().ref('users/' + userId).orderByChild("country").equalTo(country);
+      EntriesRef.on('value', function(snapshot) {
+        var data = snapshot.val();
+        //$scope.entries = data;
+        $timeout(function () {
+          $scope.$applyAsync(function() {
+              $scope.entries = data;
+          });
+        })
+      });
+    }
+
+
+    var checkEntries = function () {
+      $scope.$applyAsync(function() {
+        if ($scope.entries == 0) {
+            $scope.noData = true;
+        } else {
+            $scope.noData = false;
+        }
+      });
+    }
+
+    $rootScope.hide();
+
+    $ionicModal.fromTemplateUrl('templates/newTravel.html', function(modal) {
+        $scope.newTravelTemplate = modal;
+    });
+
+    $scope.newTravel = function() {
+        $scope.newTravelTemplate.show();
+    };
+}])
+
 
 // Controller to create a new post
 .controller('newTravelCtrl', [
@@ -292,82 +381,5 @@ angular.module('travelnotebook.controllers', [])
           return firebase.database().ref().update(updates);
         }
         $rootScope.hide();
-    };
-}])
-
-// Controller to publish all photos made by the current user
-.controller('myPhotosCtrl', [
-  'Auth','currentAuth','$scope', '$rootScope', '$state', '$window', '$ionicModal', '$firebase','$timeout',
-  function(Auth, currentAuth, $scope, $rootScope, $state, $window, $ionicModal, $firebase,$timeout) {
-    $rootScope.show("Please wait...");
-    $scope.changeBtnVisible = true;
-    var country = this.selected_country;
-    var userId = firebase.auth().currentUser.uid;
-    var userEmail = firebase.auth().currentUser.email;
-    var EntriesRef = firebase.database().ref().child('users/' + userId);
-    $scope.entries = [];
-    $scope.entriesNoFilter = [];
-
-    if (!country) {
-      var country = null;
-    }
-
-    $scope.showAll = function() {
-      showAll();
-    }
-
-    showAll();
-
-    function showAll() {
-      // function to publish all entries
-
-      EntriesRef.on('value', function(snapshot) {
-        var data = snapshot.val();
-        //$scope.entries = data;
-        $timeout(function () {
-          $scope.$apply(function() {
-              $scope.entries = data;
-              $scope.entriesNoFilter = $scope.entries;
-          });
-          checkEntries();
-        })
-      });
-    };
-
-
-    // function for the filter initiation
-    $scope.filterInit = function() {
-      var country = this.selected_country;
-      var EntriesRef = firebase.database().ref('users/' + userId).orderByChild("country").equalTo(country);
-      EntriesRef.on('value', function(snapshot) {
-        var data = snapshot.val();
-        //$scope.entries = data;
-        $timeout(function () {
-          $scope.$applyAsync(function() {
-              $scope.entries = data;
-          });
-        })
-      });
-    }
-
-
-    var checkEntries = function () {
-      $scope.$applyAsync(function() {
-        if ($scope.entries == 0) {
-            $scope.noData = true;
-        } else {
-            $scope.noData = false;
-        }
-      });
-    }
-
-    $rootScope.hide();
-
-    $ionicModal.fromTemplateUrl('templates/newTravel.html', function(modal) {
-        $scope.newTravelTemplate = modal;
-    });
-
-    $scope.newTravel = function() {
-        $scope.newTravelTemplate.show();
     };
 }])
