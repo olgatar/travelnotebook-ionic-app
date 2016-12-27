@@ -109,6 +109,10 @@ button:hover {
   text-align: center;
 }
 
+.sign input {
+  font-size: 16px !important;
+}
+
 /* Textarea */
 textarea{
   font-size: 16px;
