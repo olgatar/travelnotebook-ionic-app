@@ -19,7 +19,8 @@ h3 {
 
 /* Selected country filter */
 .filter {
-  padding-top: 15px !important;
+  padding-top: 15px;
+  padding-bottom: 15px;
   border-radius: 5px;
 }
 
@@ -47,6 +48,28 @@ h3 {
   background-color: #fff !important;
   border: 2px solid #444;
   color: #444 !important;
+}
+
+.card {
+  max-width: 420px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  -moz-transform: translateX(-50%); /* For mozilla support */
+  -webkit-transform: translateX(-50%); /* For safari support */
+  -ms-transform: translateX(-50%); /* For IE support */
+  -o-transform: translateX(-50%); /* For opera support */
+}
+
+.new-travel {
+  max-width: 420px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  -moz-transform: translateX(-50%); /* For mozilla support */
+  -webkit-transform: translateX(-50%); /* For safari support */
+  -ms-transform: translateX(-50%); /* For IE support */
+  -o-transform: translateX(-50%); /* For opera support */
 }
 
 /* Icon for button general style */
@@ -126,7 +149,12 @@ textarea{
 }
 
 .entry-main-image img {
-  width:100% !important;
+background-image: cover;
+}
+
+.entry-main-image img {
+  height: 250px;
+  width: 100% !important;
   border: 1px solid rgba(68,68,68,0.2);
   border-radius: 5px;
   margin-bottom: 5px;

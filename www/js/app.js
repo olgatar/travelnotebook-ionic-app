@@ -31,7 +31,6 @@ angular.module('travelnotebook', ['naif.base64','ionic','firebase','travelnotebo
       }
     });
 
-
     // Show ionic loading modal
     $rootScope.show = function(text) {
     $ionicLoading.show({

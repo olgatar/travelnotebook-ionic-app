@@ -3,14 +3,14 @@
   <ion-nav-bar class="bar-stable bar-dark">
     <ion-nav-title class="title">New Travel</ion-nav-title>
     <ion-nav-buttons side="left">
-      <button class="button button-clear" ng-click="close()">Cancel</button>
+      <button class="button button-clear" ng-click="close(); clearForm();">Cancel</button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
       <button class="button button-clear" ng-click="createNew()">Create</button>
     </ion-nav-buttons>
   </ion-nav-bar>
    <ion-content class="padding has-header" overflow-scroll="true">
-     <div class="list">
+     <div id="new-travel-form" class="new-travel list">
        <!-- Ionic cards with input fields -->
         <label class="card item item-input">
         <span class="input-label">Title</span>
@@ -28,10 +28,10 @@
         <div class="card image-upload">
           <label class="item item-input image-container">
             Upload image
-            <input type="file" ng-model="entry.main_image" name="file" accept="image/*" maxsize="5000" required base-sixty-four-input ng-click="imagePreview = true" onchange="getEntryImageURL(event);">
+            <input type="file" ng-model="entry.main_image" name="file" accept="image/*" maxsize="5000" required base-sixty-four-input ng-change="imagePreview = true;" onchange="getEntryImageURL(event);">
           </label>
         </div>
-        <div class="entry-main-image">
+        <div ng-show="imagePreview" class="entry-main-image">
           <img data-ng-src="data:image/jpg;base64,{{entry.main_image.base64}}" data-err-src=""/>
         </div>
 
