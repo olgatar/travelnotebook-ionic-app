@@ -16,21 +16,21 @@
       </select>
       <button type="button" class="show-all button button-dark" name="button" ng-click="showAll();">Show all</button>
     </div>
-    <div class="entry-list card" ng-repeat="entry in entries track by $index" >
-      <div class="item item-text-wrap">
-        <div class="date-and-country-div">
-          <span style="font-weight:bold;"><span style="font-size:14px;">{{ entry.created | date:'yyyy-MM-dd' }} - in </span><span ng-hide="editing">{{ entry.country }}</span>
+      <div class="entry-list card" ng-repeat="entry in entries track by $index" >
+        <div class="item item-text-wrap">
+          <div class="date-and-country-div">
+            <span style="font-weight:bold;"><span style="font-size:14px;">{{ entry.created | date:'yyyy-MM-dd' }} - in </span><span ng-hide="editing">{{ entry.country }}</span>
+          </div>
+          <!-- IF BROWSER APP -->
+          <div class="entry-main-image">
+            <img data-ng-src="data:image/jpg;base64,{{entry.main_image.base64}}" data-err-src=""/>
+          </div>
+          <!-- If on MOBILE DEVICE then uncomment statements below and comment above -->
+          <!-- <div class="entry-main-image">
+            <img data-ng-src="{{entry.main_image}}" data-err-src=""/>
+          </div> -->
         </div>
-        <!-- IF BROWSER APP -->
-        <div class="entry-main-image">
-          <img data-ng-src="data:image/jpg;base64,{{entry.main_image.base64}}" data-err-src=""/>
-        </div>
-        <!-- If on MOBILE DEVICE then uncomment statements below and comment above -->
-        <!-- <div class="entry-main-image">
-          <img data-ng-src="{{entry.main_image}}" data-err-src=""/>
-        </div> -->
-      </div>
-   </div>
+     </div>
  <!-- Card visible if no travel entrie in current user database -->
    <div class="card" ng-show="noData">
       <div class="item item-text-wrap">
