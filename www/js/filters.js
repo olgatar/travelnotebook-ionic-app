@@ -1,7 +1,9 @@
 'use strict';
 
 // filter to remove duplicates from the country list
-angular.module('travelnotebook').filter('filterDuplicates', function() {
+angular.module('travelnotebook.filters',[])
+
+.filter('filterDuplicates', function() {
 
   return function (entries,country) {
     var keys = [];
@@ -15,5 +17,16 @@ angular.module('travelnotebook').filter('filterDuplicates', function() {
       }
     })
     return unique_countries;
+  };
+})
+
+.filter('orderEntriesBy', function() {
+  return function(entries, value, reverse) {
+    var ordered = [];
+    angular.forEach(entries, function(entry) {
+      ordered.push(entry);
+    });
+    if(reverse) ordered.reverse();
+    return ordered;
   };
 });

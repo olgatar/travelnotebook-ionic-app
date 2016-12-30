@@ -3,8 +3,8 @@
 // Directive for country selection in select tag
 
 angular.module('travelnotebook.directives', [])
-.directive('countrySelect', ['$window',
-  function($window) {
+.directive('countrySelect',
+  function() {
   return {
     controller: 'newTravelCtrl',
     restrict: 'E',
@@ -267,4 +267,4 @@ angular.module('travelnotebook.directives', [])
     	];
     }
   };
-}]);
+});

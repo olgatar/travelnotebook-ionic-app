@@ -16,7 +16,7 @@
         </select>
         <button type="button" class="show-all button button-dark" name="button" ng-click="showAll();">Show all</button>
       </div>
-      <div class="entry-list card" ng-repeat="entry in entries track by $index" >
+      <div class="entry-list card" ng-repeat="entry in entries | orderEntriesBy:'updated':true">
           <div class="item item-text-wrap">
             <h3 ng-hide="editing">{{ entry.title }}</h3>
             <div class="title">
@@ -35,7 +35,7 @@
                 <input ng-show="editing" type="file" ng-model="entry.main_image" name="file" accept="image/*" maxsize="5000" required base-sixty-four-input>
               </label>
             </div>
-            <div class="entry-main-image">
+            <div ng-show="entry.main_image.base64 != null" class="entry-main-image">
               <img data-ng-src="data:image/jpg;base64,{{entry.main_image.base64}}" data-err-src=""/>
             </div>
 
@@ -48,7 +48,7 @@
                 <input ng-show="editing" type="button" ng-click="imagePreview = true; uploadPhoto();" ng-model="entry.main_image">
               </label>
             </div>
-            <div class="entry-main-image">
+            <div ng-show="entry.main_image != null" class="entry-main-image">
               <img data-ng-src="{{entry.main_image}}" data-err-src=""/>
             </div>
           -->

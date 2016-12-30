@@ -16,7 +16,7 @@
       </select>
       <button type="button" class="show-all button button-dark" name="button" ng-click="showAll();">Show all</button>
     </div>
-      <div class="entry-list card" ng-repeat="entry in entries track by $index" >
+      <div ng-show="entry.main_image.base64 != null" class="entry-list card" ng-repeat="entry in entries | orderEntriesBy:'updated':true" >
         <div class="item item-text-wrap">
           <div class="date-and-country-div">
             <span style="font-weight:bold;"><span style="font-size:14px;">{{ entry.created | date:'yyyy-MM-dd' }} - in </span><span ng-hide="editing">{{ entry.country }}</span>

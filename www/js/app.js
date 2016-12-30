@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('travelnotebook', ['naif.base64','ionic','firebase','travelnotebook.controllers','travelnotebook.directives'])
+angular.module('travelnotebook', ['naif.base64','ionic','firebase','travelnotebook.controllers','travelnotebook.directives','travelnotebook.filters'])
 
 .run(function($ionicPlatform, $rootScope, $state, $firebaseAuth, $firebase, $window, $ionicLoading, $ionicHistory) {
   $ionicPlatform.ready(function() {

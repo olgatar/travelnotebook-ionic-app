@@ -6,43 +6,42 @@ angular.module('travelnotebook.controllers', [])
         'Auth','currentAuth','$scope', '$state','$rootScope', '$firebaseAuth', '$window',
         function(Auth, currentAuth, $scope, $state, $rootScope, $firebaseAuth, $window) {
 
+          $scope.user = {
+              email: "",
+              password: ""
+          };
 
-            $scope.user = {
-                email: "",
-                password: ""
-            };
+          // signin and validate user credentials
+          $scope.validateUser = function() {
 
-            // signin and validate user credentials
-            $scope.validateUser = function() {
+              $rootScope.show('Please wait...');
+              var email = this.user.email;
+              var password = this.user.password;
+              if (!email || !password) {
+                  $rootScope.notify("Please enter valid email and/or password");
+                  return false;
+              }
 
-                $rootScope.show('Please wait...');
-                var email = this.user.email;
-                var password = this.user.password;
-                if (!email || !password) {
-                    $rootScope.notify("Please enter valid email and/or password");
-                    return false;
-                }
-
-                Auth.$signInWithEmailAndPassword(email, password)
-                .then(function(user) {
-                    $rootScope.hide();
-                    $rootScope.userEmail = user.email;
-                    $rootScope.userPassword = user.password;
-                    console.log("Logged in as:", user.uid);
-                    $state.go('travelnotebook.travels');
-                }).catch(function(error) {
-                    $rootScope.hide();
-                    if (error.code == 'EMAIL_NOT_FOUND') {
-                        $rootScope.notify('Invalid Email Address');
-                    } else if (error.code == 'INVALID_PASSWORD') {
-                        $rootScope.notify('Invalid Password');
-                    } else if (error.code == 'auth/user-not-found') {
-                        $rootScope.notify('Invalid User');
-                    } else {
-                        $rootScope.notify('Something went wrong. Please try again later');
-                    }
-                });
-            }
+              Auth.$signInWithEmailAndPassword(email, password)
+              .then(function(user) {
+                  $rootScope.hide();
+                  $rootScope.userEmail = user.email;
+                  $rootScope.userPassword = user.password;
+                  //console.log("Logged in as:", user.uid);
+                  $state.go('travelnotebook.travels');
+              }).catch(function(error) {
+                  $rootScope.hide();
+                  if (error.code == 'EMAIL_NOT_FOUND') {
+                      $rootScope.notify('Invalid Email Address');
+                  } else if (error.code == 'INVALID_PASSWORD') {
+                      $rootScope.notify('Invalid Password');
+                  } else if (error.code == 'auth/user-not-found') {
+                      $rootScope.notify('Invalid User');
+                  } else {
+                      $rootScope.notify('Something went wrong. Please try again later');
+                  }
+              });
+          }
 
         }
     ])
@@ -52,45 +51,45 @@ angular.module('travelnotebook.controllers', [])
   'Auth','currentAuth','$scope', '$state','$rootScope', '$firebaseAuth', '$window',
   function(Auth, currentAuth, $scope, $state, $rootScope, $firebaseAuth, $window) {
 
-        $scope.user = {
-            email: "",
-            password: ""
-        };
-        $scope.createUser = function() {
-          $rootScope.show('Please wait...');
-            var email = this.user.email;
-            var password = this.user.password;
-            if (!email || !password) {
-                $rootScope.notify("Please enter valid email and/or password");
-                return false;
-            }
+      $scope.user = {
+          email: "",
+          password: ""
+      };
+      $scope.createUser = function() {
+        $rootScope.show('Please wait...');
+          var email = this.user.email;
+          var password = this.user.password;
+          if (!email || !password) {
+              $rootScope.notify("Please enter valid email and/or password");
+              return false;
+          }
 
 
-            Auth.$createUserWithEmailAndPassword(email, password)
-              .then(function(user) {
-                //console.log("User " + user.uid + " created successfully!");
-                $rootScope.userEmail = user.email;
-                $rootScope.userPassword = user.password;
-                $rootScope.hide();
-                return Auth.$signInWithEmailAndPassword(email, password);
-              }).then(function(user) {
-                //console.log("Logged in as:", user.uid);
-                $state.go('travelnotebook.travels');
-              }).catch(function(error) {
-                //console.error("Error: ", error);
-                $rootScope.hide();
-                if (error.code == 'auth/invalid-email') {
-                    $rootScope.notify('Invalid Email Address');
-                } else if (error.code == 'auth/email-already-in-use') {
-                    $rootScope.notify('Email Address already taken');
-                } else if (error.code == 'auth/weak-password') {
-                    $rootScope.notify('Password should be at least 6 characters');
-                } else {
-                    $rootScope.notify('Something went wrong. Please try again later');
-                }
-              });
+          Auth.$createUserWithEmailAndPassword(email, password)
+            .then(function(user) {
+              //console.log("User " + user.uid + " created successfully!");
+              $rootScope.userEmail = user.email;
+              $rootScope.userPassword = user.password;
+              $rootScope.hide();
+              return Auth.$signInWithEmailAndPassword(email, password);
+            }).then(function(user) {
+              //console.log("Logged in as:", user.uid);
+              $state.go('travelnotebook.travels');
+            }).catch(function(error) {
+              //console.error("Error: ", error);
+              $rootScope.hide();
+              if (error.code == 'auth/invalid-email') {
+                  $rootScope.notify('Invalid Email Address');
+              } else if (error.code == 'auth/email-already-in-use') {
+                  $rootScope.notify('Email Address already taken');
+              } else if (error.code == 'auth/weak-password') {
+                  $rootScope.notify('Password should be at least 6 characters');
+              } else {
+                  $rootScope.notify('Something went wrong. Please try again later');
+              }
+            });
 
-        }
+      }
     }
 ])
 
@@ -112,7 +111,8 @@ angular.module('travelnotebook.controllers', [])
     }
 
     $scope.showAll = function() {
-      showAll();
+      $state.reload();
+      //showAll();
     }
 
     showAll();
@@ -185,13 +185,14 @@ angular.module('travelnotebook.controllers', [])
         var country = this.entry.country;
         var main_body = this.entry.main_body;
         var main_image = this.entry.main_image;
+        var date = Date.now();
 
         var entryRef = firebase.database().ref().child('users/' + userId + '/' + key);
         entryRef.update({
           title: title,
           country: country,
           main_body: main_body,
-          updated: Date.now(),
+          updated: date,
           main_image: main_image
         }, function(error) {
             if (error) {
@@ -293,12 +294,13 @@ angular.module('travelnotebook.controllers', [])
   'Auth','$scope', '$rootScope', '$state', '$window', '$ionicModal', '$firebase',
   function(Auth, $scope, $rootScope, $state, $window, $ionicModal, $firebase) {
 
+/*
     document.addEventListener("deviceready", onDeviceReady, false);
 
       function onDeviceReady () {
          //alert('Loading Cordova is completed');
       }
-
+*/
     $scope.uploadPhoto = function() {
        var options =   {
            quality: 50,
@@ -335,7 +337,8 @@ angular.module('travelnotebook.controllers', [])
     };
 
     $scope.close = function() {
-        $scope.modal.hide();
+      $state.reload();
+      $scope.modal.hide();
     };
 
     $scope.createNew = function() {
@@ -349,20 +352,24 @@ angular.module('travelnotebook.controllers', [])
           $rootScope.notify("Please fill in all input fields...");
           return;
         }
+        $state.reload();
         $scope.modal.hide();
+
         $rootScope.show("Please wait...");
 
         var usersRef = firebase.database().ref('users');
         var entriesRef = firebase.database().ref('users/' + userId).child('entries');
         var newEntryKey = usersRef.child('entries').push().key;
+        var date = Date.now();
+
         var entry = {
             key: newEntryKey,
             userEmail: userEmail,
             title: title,
             country: country,
             main_body: main_body,
-            created: Date.now(),
-            updated: Date.now(),
+            created: date,
+            updated: date,
             main_image: main_image
         };
 
@@ -374,12 +381,6 @@ angular.module('travelnotebook.controllers', [])
           updates['users/' + userId + '/' + newEntryKey] = entry;
           return firebase.database().ref().update(updates);
         }
-        $scope.clearForm();
         $rootScope.hide();
     };
-
-    $scope.clearForm = function() {
-      $scope.entry = {};
-      document.getElementsByTagName('img').src = '';
-    }
 }])
