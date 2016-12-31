@@ -1,5 +1,6 @@
 # TravelNotebook
-TravelNotebook is a mobile app build with [Cordova](https://cordova.apache.org) and [Ionic Framework](https://ionicframework.com/docs/) and [Firebase](https://firebase.google.com/) as an API server.
+TravelNotebook is a mobile app build with [Cordova](https://cordova.apache.org), [Ionic Framework](https://ionicframework.com/docs/), [Firebase](https://firebase.google.com/) as an API server and npm
+[angular-base64-upload module](https://github.com/adonespitogo/angular-base64-upload) (for app to run in web browser).
 
 ## How to build & run
 
@@ -15,16 +16,11 @@ TravelNotebook is a mobile app build with [Cordova](https://cordova.apache.org) 
 
   npm install gulp-connect --save
 
-4. Install [angular-base64-upload module](https://github.com/adonespitogo/angular-base64-upload):
-		(for app to function as web browser application)
-
-  npm install angular-base64-upload
-
-5. Add target platform (for app to function as a mobile device application):
+4. Add target platform (for app to function as a mobile device application):
 
   ionic platform add [android/ios]
 
-6. To run app on Android, addtionally install cordova-plugin-camera:
+5. To run app on Android, addtionally install cordova-plugin-camera:
 
   ionic platform add [android/ios]
 
