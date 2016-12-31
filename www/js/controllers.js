@@ -31,9 +31,10 @@ angular.module('travelnotebook.controllers', [])
                   $state.go('travelnotebook.travels');
               }).catch(function(error) {
                   $rootScope.hide();
-                  if (error.code == 'EMAIL_NOT_FOUND') {
+                  //console.log(error.code);
+                  if (error.code == 'auth/invalid-email') {
                       $rootScope.notify('Invalid Email Address');
-                  } else if (error.code == 'INVALID_PASSWORD') {
+                  } else if (error.code == 'auth/wrong-password') {
                       $rootScope.notify('Invalid Password');
                   } else if (error.code == 'auth/user-not-found') {
                       $rootScope.notify('Invalid User');
@@ -76,12 +77,12 @@ angular.module('travelnotebook.controllers', [])
               //console.log("Logged in as:", user.uid);
               $state.go('travelnotebook.travels');
             }).catch(function(error) {
-              //console.error("Error: ", error);
+              console.error("Error: ", error);
               $rootScope.hide();
               if (error.code == 'auth/invalid-email') {
                   $rootScope.notify('Invalid Email Address');
               } else if (error.code == 'auth/email-already-in-use') {
-                  $rootScope.notify('Email Address already taken');
+                  $rootScope.notify('Email Address is already taken');
               } else if (error.code == 'auth/weak-password') {
                   $rootScope.notify('Password should be at least 6 characters');
               } else {
