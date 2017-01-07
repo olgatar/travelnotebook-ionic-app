@@ -1,5 +1,5 @@
 # TravelNotebook
-TravelNotebook is a mobile app build with [Apache Cordova](https://cordova.apache.org), [Ionic Framework](https://ionicframework.com/docs/), [Firebase](https://firebase.google.com/) as backend and npm
+TravelNotebook is a similar to blog application that allows the users to keep track on their travels by creating, editing and deleting the travel posts with uploaded images. TravelNotebook built with [Apache Cordova](https://cordova.apache.org), [Ionic Framework](https://ionicframework.com/docs/), [Firebase](https://firebase.google.com/) as backend and npm
 [angular-base64-upload module](https://github.com/adonespitogo/angular-base64-upload) (for app to run in web browser).
 
 ## How to build & run
