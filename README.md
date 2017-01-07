@@ -4,38 +4,44 @@ TravelNotebook is a mobile app build with [Cordova](https://cordova.apache.org),
 
 ## How to build & run
 
-1. Install Cordova and Ionic globally:
+1. Clone or Download the following GitHub project to you local machine:
+
+	git clone https://github.com/olgatar/travelnotebook-ionic-app.git
+
+2. Go to travelnotebook-ionic-app project folder in your terminal:
+
+	cd travelnotebook-ionic-app
+
+3. Install Cordova and Ionic globally (if not already installed):
 
 	npm install -g cordova ionic
 
-2. Install npm packages:
+4. Install npm packages:
 
 	npm install
 
-3. Install gulp-connect for app development (optional):
-
-  npm install gulp-connect --save
-
-4. Add target platform (for app to function as a mobile device application):
+5. Add target platform (for mobile device application):
 
   ionic platform add [android/ios]
 
-5. To run app on Android, addtionally install cordova-plugin-camera:
+6. Additionally install cordova-plugin-camera (for mobile device application:
 
-  ionic platform add [android/ios]
+  cordova plugin add cordova-plugin-camera
 
-To run with gulp:
+7. To run in browser with Gulp:
 
   1. gulp serve
 	2. open http://localhost:3000/ in browser
 
+8. To run in browser with Ionic:
+
+	  ionic serve
+
+--------------
+
 To just build:
 
 	ionic platform build [android/ios]
-
-To run in browser:
-
-  ionic serve
 
 To run in mobile emulator:
 
