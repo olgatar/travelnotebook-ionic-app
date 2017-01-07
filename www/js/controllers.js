@@ -98,11 +98,13 @@ angular.module('travelnotebook.controllers', [])
 .controller('myTravelsCtrl', [
   'Auth','currentAuth','$scope', '$rootScope', '$state', '$window', '$ionicModal','$ionicLoading','$firebase','$timeout',
   function(Auth, currentAuth, $scope, $rootScope, $state, $window, $ionicModal, $ionicLoading, $firebase, $timeout) {
-    //$rootScope.show("Please wait...");
+    var currentUser = Auth.$getAuth();
     $scope.changeBtnVisible = true;
     var country = this.selected_country;
-    var userId = firebase.auth().currentUser.uid;
-    var userEmail = firebase.auth().currentUser.email;
+    var userId = currentUser.uid;
+    //console.log(userId);
+    var userEmail = currentUser.email;
+    //console.log(userEmail);
     var EntriesRef = firebase.database().ref().child('users/' + userId);
     $scope.entries = [];
     $scope.entriesNoFilter = [];
@@ -212,10 +214,13 @@ angular.module('travelnotebook.controllers', [])
 .controller('myPhotosCtrl', [
   'Auth','currentAuth','$scope', '$rootScope', '$state', '$window', '$ionicModal','$ionicLoading','$firebase','$timeout',
   function(Auth, currentAuth, $scope, $rootScope, $state, $window, $ionicModal, $ionicLoading, $firebase, $timeout) {
+    var currentUser = Auth.$getAuth();
     $scope.changeBtnVisible = true;
     var country = this.selected_country;
-    var userId = firebase.auth().currentUser.uid;
-    var userEmail = firebase.auth().currentUser.email;
+    var userId = currentUser.uid;
+    //console.log(userId);
+    var userEmail = currentUser.email;
+    //console.log(userEmail);
     var EntriesRef = firebase.database().ref().child('users/' + userId);
     $scope.entries = [];
     $scope.entriesNoFilter = [];
@@ -347,8 +352,11 @@ angular.module('travelnotebook.controllers', [])
         var country = this.entry.country;
         var main_body = this.entry.main_body;
         var main_image = this.entry.main_image;
-        var userId = firebase.auth().currentUser.uid;
-        var userEmail = firebase.auth().currentUser.email;
+        var currentUser = Auth.$getAuth();
+        var userId = currentUser.uid;
+        //console.log(userId);
+        var userEmail = currentUser.email;
+        //console.log(userEmail);
         if (!title || !country || !main_body) {
           $rootScope.notify("Please fill in all input fields...");
           return;
